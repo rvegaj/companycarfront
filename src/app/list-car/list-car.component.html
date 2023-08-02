@@ -1,0 +1,27 @@
+<div>
+  <h3>Atomóviles creados</h3>
+  <table>
+    <thead >
+    <tr>
+      <th>Modelo</th>
+      <th>Marca</th>
+      <th>Fecha de fabricación</th>
+      <th>Modificar automóvil</th>
+      <th>Borrar automóvil</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let car of carsList">
+      <td>{{ car.model }}</td>
+      <td>{{ car.brand }}</td>
+      <td>{{ car.manufacturingDate }}</td>
+      <td>
+        <button (click)="editCar(car)" class="btn btn-primary btn-block">Editar</button>
+      </td>
+      <td>
+        <button (click)="deleteCar(car)" class="btn btn-primary btn-block">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

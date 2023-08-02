@@ -1,0 +1,20 @@
+.background-image{
+    background-image: url("../../assets/backgroundidex.png");
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: blue;
+}
+.title-container{
+    position: absolute;
+    text-align: left;
+    margin-left: 120vh;
+    padding-top: 25vh;
+    margin-right: 15px;
+
+
+}
+:host >>>.background-image .p-button{
+    margin: 10px 0;
+
+}

@@ -1,0 +1,47 @@
+<form (ngSubmit)="f.form.valid && createEmployee()" #employeeForm="ngForm" name="form" #f="ngForm" novalidate>
+  <div>
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" required [(ngModel)]="employee.nameEmployee"  #nameEmployee="ngModel">
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="nameEmployee.errors && f.submitted"
+    >
+      El nombre del empleado es requerido!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Placa del vehiculo:</label>
+    <input type="text" id="registrationCar" name="registrationCar" required [(ngModel)]="employee.registrationCar"
+           #registrationCar="ngModel">
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="registrationCar.errors && f.submitted"
+    >
+      La placa es requerida!
+    </div>
+  </div>
+    <div class="form-group"><button type="submit" [disabled]="!employeeForm.form.valid" class="btn btn-primary btn-block">Agregar empleado</button></div>
+
+  <div class="form-group">
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="f.submitted && isErrorSave"
+    >
+      Guardado fallido: {{ errorMessage }}
+    </div>
+  </div>
+  <div class="form-group">
+    <div
+      class="success"
+      role="success"
+      *ngIf="f.submitted && !isErrorSave"
+    >
+      {{ successMessage }}
+    </div>
+  </div>
+</form>
+<app-list-employee (employeeUpdate)="updateEmployee($event)"></app-list-employee>

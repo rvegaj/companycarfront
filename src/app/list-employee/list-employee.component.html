@@ -1,0 +1,25 @@
+<div>
+  <h3>Empleados creados</h3>
+  <table>
+    <thead >
+    <tr>
+      <th>Nombre</th>
+      <th>Placa automovil</th>
+      <th>Modificar empleado</th>
+      <th>Borrar empleado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employeesList">
+      <td>{{ employee.nameEmployee }}</td>
+      <td>{{ employee.registrationCar }}</td>
+      <td>
+        <button (click)="editEmployee(employee)" class="btn btn-primary btn-block">Editar</button>
+      </td>
+      <td>
+        <button (click)="deleteEmployee(employee)" class="btn btn-primary btn-block">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
