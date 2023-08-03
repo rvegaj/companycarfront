@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
 import { EmployeeService} from '../services/employeeservice/employee.service';
 import {EventEmitter} from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-employee',
@@ -9,6 +10,8 @@ import {EventEmitter} from '@angular/core';
 })
 export class ListEmployeeComponent implements OnInit {
   @Output()  employeeUpdate = new EventEmitter<any>();
+  @Output()  refreshEmployee = new EventEmitter<any>();
+  @Input() employeesInputList: any[];
   errorMessage = '';
   successMessage = '';
   employeesList: any[] = [];
@@ -17,7 +20,6 @@ export class ListEmployeeComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.getEmployeeList();
   }
 
   editEmployee(employee: any): void{
@@ -26,45 +28,20 @@ export class ListEmployeeComponent implements OnInit {
   }
 
   deleteEmployee(employee: any): void{
-    console.log('Employee to delete:', JSON.stringify(employee));
     this.employeeService.deleteEmployee(employee.id).subscribe(
       (response) =>
       {
         console.log(response);
         this.successMessage = 'Empleado eliminado exitosamente';
-        this.getEmployeeList();
+        this.refreshEmployee.emit();
       },
       (error) => {
-        console.log(error);
-        this.errorMessage = error.errorMessage;
+        console.log(error.error);
+        const response = JSON.parse(error.error);
+        Swal.fire(response.message);
       }
     );
 
-  }
-  getEmployees(): void {
-    this.employeeService.getEmployeeList().subscribe(
-      (data) => {
-        this.employeesList = data;
-      },
-      (error) => {
-        console.error('Error fetching employees:', error);
-      }
-    );
-  }
-  getEmployeeList(): void{
-    this.employeeService.getEmployeeList().subscribe(
-      (employeeList) => {
-        this.employeesList = employeeList;
-      }
-    );
-    this.employeeService.getEmployeeListUpdate().subscribe(
-      (data) => {
-        console.log('data.length', data.length);
-        if (data.length !== 0) {
-          this.employeesList = data;
-        }
-      }
-    );
   }
 
 }

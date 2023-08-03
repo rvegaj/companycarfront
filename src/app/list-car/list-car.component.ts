@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarserviceService} from '../services/carservice/carservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-car',
@@ -8,6 +9,8 @@ import {CarserviceService} from '../services/carservice/carservice.service';
 })
 export class ListCarComponent implements OnInit {
   @Output()  carUpdate = new EventEmitter<any>();
+  @Output()  refreshCar = new EventEmitter<any>();
+  @Input() carsInputList: any[];
   errorMessage = '';
   successMessage = '';
   carsList: any[] = [];
@@ -16,7 +19,6 @@ export class ListCarComponent implements OnInit {
   constructor(private carService: CarserviceService) { }
 
   ngOnInit(): void {
-    this.getCarList();
   }
 
   editCar(car: any): void{
@@ -25,46 +27,21 @@ export class ListCarComponent implements OnInit {
   }
 
   deleteCar(car: any): void{
-    console.log('Employee to delete:', JSON.stringify(car));
     this.carService.deleteCar(car.id).subscribe(
       (response) =>
       {
         console.log(response);
         this.successMessage = 'Carro eliminado exitosamente';
-        this.getCarList();
+        this.refreshCar.emit();
       },
       (error) => {
         console.log(error);
         this.errorMessage = error.errorMessage;
+        const response = JSON.parse(error.error);
+        Swal.fire(response.message);
       }
     );
 
   }
-  getCars(): void {
-    this.carService.getCarList().subscribe(
-      (data) => {
-        this.carsList = data;
-      },
-      (error) => {
-        console.error('Error al consultar los carros:', error);
-      }
-    );
-  }
-  getCarList(): void{
-    this.carService.getCarList().subscribe(
-      (carList) => {
-        this.carsList = carList;
-      }
-    );
-    this.carService.getCarListUpdate().subscribe(
-      (data) => {
-        console.log('data.length', data.length);
-        if (data.length !== 0) {
-          this.carsList = data;
-        }
-      }
-    );
-  }
-
 
 }

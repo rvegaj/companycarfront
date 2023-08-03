@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -31,6 +30,7 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { IndexPageComponent } from './index/index-page.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import {CarModalComponent} from './car-modal/car-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    DashboardComponent,
     SidenavComponent,
     ListCarComponent,
     ListEmployeeComponent,
@@ -51,7 +50,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     CreateCarComponent,
     CreateEmployeeComponent,
     CreateTripComponent,
-    IndexPageComponent
+    IndexPageComponent,
+    CarModalComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +67,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule,
-    ModalModule
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

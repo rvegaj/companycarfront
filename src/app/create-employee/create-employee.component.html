@@ -34,14 +34,5 @@
       Guardado fallido: {{ errorMessage }}
     </div>
   </div>
-  <div class="form-group">
-    <div
-      class="success"
-      role="success"
-      *ngIf="f.submitted && !isErrorSave"
-    >
-      {{ successMessage }}
-    </div>
-  </div>
 </form>
-<app-list-employee (employeeUpdate)="updateEmployee($event)"></app-list-employee>
+<app-list-employee (employeeUpdate)="updateEmployee($event)" (refreshEmployee)="getEmployees()" [employeesInputList]="employeeList"></app-list-employee>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../model/car';
 import { CarserviceService} from '../services/carservice/carservice.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-car',
@@ -25,7 +26,15 @@ export class CreateCarComponent implements OnInit {
       (response) =>
       {
         console.log(response);
+        if (!this.car.id) {
+          this.successMessage = 'Carro creado exitosamente!';
+        }
+        else {
+          this.successMessage = 'Carro actualizado exitosamente!';
+        }
         this.successMessage = 'Carro creado exitosamente!';
+        Swal.fire(this.successMessage);
+        this.getCars();
       },
       (error) => {
         console.log(error);
@@ -34,7 +43,6 @@ export class CreateCarComponent implements OnInit {
         return this.errorMessage;
       }
     );
-    this.carService.setCarListUpdate(this.carList);
     this.car = new Car();
   }
   updateCar(car: any): void{
@@ -47,16 +55,6 @@ export class CreateCarComponent implements OnInit {
       },
       (error) => {
         console.error('Error obteniendo los empleados:', error);
-      }
-    );
-  }
-  getCarsRetirements(): void {
-    this.carService.getCarsRetirements().subscribe(
-      (data) => {
-        this.carRetirementList = data;
-      },
-      (error) => {
-        console.error('Error consultando carros en uso:', error);
       }
     );
   }

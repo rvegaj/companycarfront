@@ -1,0 +1,54 @@
+/* Estilo para el contenedor del modal */
+.modal-content {
+  background-color: #fff;
+  border: 1px solid #ddeeef;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.modal-header {
+  background-color: #ecedf5;
+  height: complex;
+}
+
+/* Estilo para el título del modal */
+.modal-header .modal-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para el botón de cerrar */
+.modal-header .close {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilo para el contenido del modal */
+.modal-body {
+  padding-top: 10px;
+}
+
+/* Estilo para el botón "Cerrar" */
+.modal-body button {
+  background-color: #3134b7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.modal-body button:hover {
+  background-color: #0056b3;
+}
+
+.modal-body button:focus {
+  outline: none;
+}
+
+.modal-body p {
+  font-size: 15px;
+  font-weight: bold;
+}

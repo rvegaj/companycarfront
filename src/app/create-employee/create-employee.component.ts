@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Employee} from '../model/employee';
 import { EmployeeService } from '../services/employeeservice/employee.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -8,6 +9,7 @@ import { EmployeeService } from '../services/employeeservice/employee.service';
 })
 
 export class CreateEmployeeComponent implements OnInit {
+
   constructor(private employeeService: EmployeeService) { }
   errorMessage = '';
   successMessage = '';
@@ -22,16 +24,23 @@ export class CreateEmployeeComponent implements OnInit {
     (response) =>
       {
         console.log(response);
-        this.successMessage = 'Empleado creado exitosamente!';
+        if (!this.employee.id) {
+          this.successMessage = 'Empleado creado exitosamente!';
+        }
+        else {
+          this.successMessage = 'Empleado actualizado exitosamente!';
+        }
+        Swal.fire(this.successMessage);
+        console.log('Creado');
+        this.getEmployees();
       },
       (error) => {
         console.log(error);
-        this.errorMessage = error.errorMessage;
+        this.errorMessage = error.message;
         this.isErrorSave = true;
-        return this.errorMessage;
+        Swal.fire(this.errorMessage);
       }
     );
-    this.employeeService.setEmployeeListUpdate(this.employeeList);
     this.employee = new Employee();
   }
   updateEmployee(employee: any): void{
