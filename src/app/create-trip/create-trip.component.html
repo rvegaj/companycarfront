@@ -1,1 +1,21 @@
-<p>create-trip works!</p>
+<div class="create-viaje-container">
+  <div class="form-group">
+    <div class="dropdown-container">
+      <label for="employeeDropdown">Seleccione un empleado:</label>
+      <select id="employeeDropdown" [(ngModel)]="selectedEmployeeId">
+        <option value="">Seleccionar empleado</option>
+        <option *ngFor="let employee of employeeList" [value]="employee.id">{{ employee.nameEmployee }} - {{ employee.registrationCar }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="carDropdown">Seleccionar carro:</label>
+    <select id="carDropdown" [(ngModel)]="selectedCarId">
+      <option value="">Seleccionar carro</option>
+      <option *ngFor="let car of carsList" [value]="car.id">{{ car.model }} - {{ car.brand }}</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" [disabled]="!isFormValid()" (click)="createTrip()">Inicio de Viaje</button>
+</div>
+<app-list-trip></app-list-trip>

@@ -51,7 +51,8 @@ import {CarModalComponent} from './car-modal/car-modal.component';
     CreateEmployeeComponent,
     CreateTripComponent,
     IndexPageComponent,
-    CarModalComponent
+    CarModalComponent,
+    CreateTripComponent
   ],
   imports: [
     BrowserModule,

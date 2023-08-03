@@ -24,15 +24,5 @@
     </div>
   </div>
     <div class="form-group"><button type="submit" [disabled]="!employeeForm.form.valid" class="btn btn-primary btn-block">Agregar empleado</button></div>
-
-  <div class="form-group">
-    <div
-      class="alert alert-danger"
-      role="alert"
-      *ngIf="f.submitted && isErrorSave"
-    >
-      Guardado fallido: {{ errorMessage }}
-    </div>
-  </div>
 </form>
 <app-list-employee (employeeUpdate)="updateEmployee($event)" (refreshEmployee)="getEmployees()" [employeesInputList]="employeeList"></app-list-employee>

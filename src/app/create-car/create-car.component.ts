@@ -18,8 +18,6 @@ export class CreateCarComponent implements OnInit {
 
   car: Car = new Car();
   carList: any[];
-  carRetirementList: any[];
-  submitted = false;
 
   createCar(): void{
     this.carService.createCar(this.car).subscribe(
@@ -37,10 +35,9 @@ export class CreateCarComponent implements OnInit {
         this.getCars();
       },
       (error) => {
-        console.log(error);
-        this.errorMessage = error.errorMessage;
-        this.isErrorSave = true;
-        return this.errorMessage;
+        console.log(error.error);
+        const response = JSON.parse(error.error);
+        Swal.fire(response.message);
       }
     );
     this.car = new Car();

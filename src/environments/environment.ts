@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   _API_AUTENTHICATE: 'http://localhost:8080/api/v1/authenticate',
   _API_EMPLOYEE: 'http://localhost:8080/api/employees',
-  _API_CAR: 'http://localhost:8080/api/cars'
+  _API_CAR: 'http://localhost:8080/api/cars',
+  _API_TRIP: 'http://localhost:8080/api/trips'
 };
 
 /*

@@ -13,8 +13,6 @@ export class ListCarComponent implements OnInit {
   @Input() carsInputList: any[];
   errorMessage = '';
   successMessage = '';
-  carsList: any[] = [];
-
   private carEdit: any;
   constructor(private carService: CarserviceService) { }
 

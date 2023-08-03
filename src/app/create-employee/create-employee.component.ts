@@ -35,10 +35,9 @@ export class CreateEmployeeComponent implements OnInit {
         this.getEmployees();
       },
       (error) => {
-        console.log(error);
-        this.errorMessage = error.message;
-        this.isErrorSave = true;
-        Swal.fire(this.errorMessage);
+        console.log(error.error);
+        const response = JSON.parse(error.error);
+        Swal.fire(response.message);
       }
     );
     this.employee = new Employee();
@@ -57,7 +56,10 @@ export class CreateEmployeeComponent implements OnInit {
         this.employeeList = data;
       },
       (error) => {
-        console.error('Error fetching employees:', error);
+        console.error('Error al consultar los empleados:', error);
+        console.log(error.error);
+        const response = JSON.parse(error.error);
+        Swal.fire(response.message);
       }
     );
   }
