@@ -13,11 +13,8 @@ export class CreateEmployeeComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
   errorMessage = '';
   successMessage = '';
-  isErrorSave = false;
-
   employee: Employee = new Employee();
   employeeList: any[];
-  submitted = false;
 
   createEmployee(): void{
     this.employeeService.createEmployee(this.employee).subscribe(

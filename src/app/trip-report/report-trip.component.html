@@ -1,0 +1,22 @@
+<div class="dropdown-container ">
+  <div class="form-group">
+    <div class="dropdown-container">
+      <label for="monthDropdown">Selecciona un mes:</label>
+      <select id="monthDropdown" [(ngModel)]="selectedMonthObj" (ngModelChange)="checkIfButtonShouldBeEnabled()">
+        <option *ngFor="let month of months" [ngValue]="month">{{ month.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="dropdown-container">
+      <label for="yearDropdown">Seleccionar un año:</label>
+      <select id="yearDropdown" [(ngModel)]="selectedYear" (ngModelChange)="onYearSelected($event)">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary" [disabled]="isButtonDisabled" (click)="createReportTrip()">Generar reporte de viajes</button>
+</div>
+<app-list-trip-report *ngIf="tripsListReport" [tripsListInputReport]="tripsListReport"></app-list-trip-report>
+

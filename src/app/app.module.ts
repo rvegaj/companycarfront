@@ -30,7 +30,9 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { IndexPageComponent } from './index/index-page.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import {CarModalComponent} from './car-modal/car-modal.component';
+import { CarModalComponent } from './car-modal/car-modal.component';
+import { ReportTripComponent } from './trip-report/report-trip.component';
+import { ListTripReportComponent } from './list-trip-report/list-trip-report.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import {CarModalComponent} from './car-modal/car-modal.component';
     CreateTripComponent,
     IndexPageComponent,
     CarModalComponent,
-    CreateTripComponent
+    CreateTripComponent,
+    ReportTripComponent,
+    ListTripReportComponent
   ],
   imports: [
     BrowserModule,

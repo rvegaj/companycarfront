@@ -2,17 +2,17 @@
 <mat-nav-list>
   <a mat-list-item routerLink="/home">Inicio</a>
   <mat-list-item (click)="toggleSubMenuEmployee()">Empleados</mat-list-item>
-  <mat-nav-list *ngIf="showSubMenuEmployee">
+  <mat-nav-list class="item" *ngIf="showSubMenuEmployee">
     <a mat-list-item routerLink="/home/create-employee">Crear</a>
   </mat-nav-list>
   <mat-list-item (click)="toggleSubMenuCar()">Automoviles</mat-list-item>
-  <mat-nav-list *ngIf="showSubMenuCar">
+  <mat-nav-list class="item" *ngIf="showSubMenuCar">
     <a mat-list-item routerLink="/home/create-car">Crear</a>
     <a mat-list-item (click)="openModal()">Automoviles en uso</a>
   </mat-nav-list>
   <mat-list-item (click)="toggleSubMenuTrip()">Viajes</mat-list-item>
-  <mat-nav-list *ngIf="showSubMenuTrip">
-    <a mat-list-item routerLink="//home/create-trip">Crear</a>
-    <a mat-list-item routerLink="/list-trip">Realizados</a>
+  <mat-nav-list class="item" *ngIf="showSubMenuTrip">
+    <a mat-list-item routerLink="/home/create-trip">Crear</a>
+    <a mat-list-item routerLink="/home/report-trip">Realizados</a>
   </mat-nav-list>
 </mat-nav-list>

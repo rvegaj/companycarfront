@@ -55,11 +55,8 @@ export class CreateCarComponent implements OnInit {
       }
     );
   }
-
   ngOnInit(): void {
     this.getCars();
   }
-
-
 
 }

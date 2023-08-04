@@ -1,5 +1,5 @@
 <div>
-  <h3>Viajes creados</h3>
+  <h3>Reporte de viajes por mes y año</h3>
   <table>
     <thead >
     <tr>
@@ -7,18 +7,14 @@
       <th>Automovil</th>
       <th>Fecha de recogida</th>
       <th>Fecha de entrega</th>
-      <th>Devolver carro</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let trip of tripsInputList">
+    <tr *ngFor="let trip of tripsListInputReport">
       <td>{{ trip.employeeId.nameEmployee }}</td>
       <td>{{ trip.carId.model}} - {{ trip.carId.brand }}</td>
       <td>{{ trip.retirementDate}}</td>
       <td>{{ trip.deliveryDate }}</td>
-      <td>
-        <button (click)="deliveryCarInTrip(trip)" class="btn btn-primary btn-block" [disabled]="isValidDateDeliveryTrip(trip.deliveryDate)">Devolver carro</button>
-      </td>
     </tr>
     </tbody>
   </table>

@@ -48,14 +48,11 @@ export class CreateTripComponent implements OnInit {
     );
     this.trip = new Trip();
   }
-  updateTrip(trip: any): void{
-    this.trip = trip;
-    console.log('trip', trip);
-  }
   ngOnInit(): void {
     this.getCars();
     this.getEmployees();
     this.isFormValid();
+    this.getTrips();
   }
 
   getTrips(): void {
@@ -90,8 +87,8 @@ export class CreateTripComponent implements OnInit {
     );
   }
   isFormValid(): boolean {
-    return this.selectedEmployeeId !== null && this.selectedCarId !== null;
+    return this.selectedEmployeeId !== null && this.selectedCarId !== null
+      && this.trip.retirementDate !== null;
   }
-
 
 }

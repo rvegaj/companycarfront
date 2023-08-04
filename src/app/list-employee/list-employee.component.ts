@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { EmployeeService} from '../services/employeeservice/employee.service';
 import {EventEmitter} from '@angular/core';
 import Swal from 'sweetalert2';
@@ -14,7 +14,6 @@ export class ListEmployeeComponent implements OnInit {
   @Input() employeesInputList: any[];
   errorMessage = '';
   successMessage = '';
-  employeesList: any[] = [];
 
   private employeeEdit: any;
   constructor(private employeeService: EmployeeService) { }
@@ -33,6 +32,7 @@ export class ListEmployeeComponent implements OnInit {
       {
         console.log(response);
         this.successMessage = 'Empleado eliminado exitosamente';
+        Swal.fire(this.successMessage);
         this.refreshEmployee.emit();
       },
       (error) => {

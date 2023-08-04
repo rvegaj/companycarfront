@@ -31,10 +31,10 @@ export class ListCarComponent implements OnInit {
         console.log(response);
         this.successMessage = 'Carro eliminado exitosamente';
         this.refreshCar.emit();
+        Swal.fire(this.successMessage);
       },
       (error) => {
         console.log(error);
-        this.errorMessage = error.errorMessage;
         const response = JSON.parse(error.error);
         Swal.fire(response.message);
       }

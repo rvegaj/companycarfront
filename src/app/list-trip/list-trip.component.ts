@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, Output} from '@angular/core';
-import { EmployeeService} from '../services/employeeservice/employee.service';
+import { TripService } from '../services/tripservice/trip.service';
 import {EventEmitter} from '@angular/core';
 import Swal from 'sweetalert2';
 
@@ -9,39 +9,34 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-trip.component.css']
 })
 export class ListTripComponent implements OnInit {
-  @Output()  employeeUpdate = new EventEmitter<any>();
-  @Output()  refreshEmployee = new EventEmitter<any>();
-  @Input() employeesInputList: any[];
+  @Output() tripUpdate = new EventEmitter<any>();
+  @Output() refreshTrip = new EventEmitter<any>();
+  @Input() tripsInputList: any[];
   errorMessage = '';
   successMessage = '';
-  employeesList: any[] = [];
-
-  private employeeEdit: any;
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private tripService: TripService) {
+  }
 
   ngOnInit(): void {
   }
-
-  editEmployee(employee: any): void{
-    this.employeeEdit = employee;
-    this.employeeUpdate.emit(this.employeeEdit);
-  }
-
-  deleteEmployee(employee: any): void{
-    this.employeeService.deleteEmployee(employee.id).subscribe(
-      (response) =>
-      {
-        console.log(response);
-        this.successMessage = 'Empleado eliminado exitosamente';
-        this.refreshEmployee.emit();
-      },
-      (error) => {
-        console.log(error.error);
-        const response = JSON.parse(error.error);
-        Swal.fire(response.message);
-      }
-    );
-
-  }
-
+  deliveryCarInTrip(trip: any): void {
+      this.tripService.deliveryCarInTrip(trip).subscribe(
+        (response) =>
+        {
+          console.log(response);
+          this.successMessage = 'Carro entregado exitosamente. Viaje actualizado!';
+          this.refreshTrip.emit();
+          Swal.fire(this.successMessage);
+        },
+        (error) => {
+          console.log(error.error);
+          const response = error.error;
+          Swal.fire(response.message);
+        }
+      );
+    }
+    isValidDateDeliveryTrip(date: Date): boolean {
+      return date !== null;
+    }
 }
+
