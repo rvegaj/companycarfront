@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {HttpHeaders} from '@angular/common/http';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -43,10 +44,10 @@ export class TokenStorageService {
     return window.sessionStorage.getItem(AUTHENTICATED);
   }
 
-  public saveListProps(listProp: any[]): any {
-    window.sessionStorage.setItem(LIST_KEY, JSON.stringify(listProp));
-  }
-  public getListProps(): any {
-    return window.sessionStorage.getItem(LIST_KEY);
+  public getHeaders(): HttpHeaders{
+    const data = JSON.parse(this.getToken()).token;
+    return new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', `Bearer ${data}`);
   }
 }
